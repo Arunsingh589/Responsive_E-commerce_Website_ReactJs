@@ -87,7 +87,7 @@ const Discount = ({ cart, setCart, items, likedItems, setLikedItems }) => {
                         text-white">
                   <div className="text-xl flex flex-col gap-4">
                     <h2 className="text-[40px] font-bold">$20</h2>
-                    <div>9
+                    <div>
                       <p>Under Products</p>
                       <p>Limited Times Only</p>
                     </div>

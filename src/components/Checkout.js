@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import ProgressBar from './ProgressBar';
 
 const Checkout = ({ cart, setCart }) => {
   const [paymentStatus, setPaymentStatus] = useState('pending');
@@ -69,14 +70,16 @@ const Checkout = ({ cart, setCart }) => {
     setTimeout(() => {
       setPaymentStatus('completed');
       setShowProducts(false);
-      setDeliveryProgress(1); // Order dispatched
+      setDeliveryProgress(1);
+      setPaymentDetails([]) // Order dispatched
       setCart([]); // Empty the cart
-      setPaymentDetails([])
-    }, 2000);
 
-    setTimeout(() => {
-      setDeliveryProgress(2); // Order delivered
-    }, 4000);
+      // Simulating delayed delivery
+      setTimeout(() => {
+        setDeliveryProgress(2); // Order delivered
+      }, 300000 + Math.random() * 300000); // 5 to 10 minutes
+    }, 2000); // Short delay for initial processing and dispatch
+  
   };
 
   const location = useLocation();
@@ -85,6 +88,7 @@ const Checkout = ({ cart, setCart }) => {
     location.pathname === '/checkout' && (
       <div className="max-w-3xl mx-auto p-4">
         <h2 className="text-2xl font-bold mb-4">Checkout</h2>
+        <ProgressBar progress={deliveryProgress} />
         {cart && cart.length > 0 && showProducts ? (
           <div className="overflow-x-auto">
             <div className="border border-gray-300 rounded-lg p-4">
