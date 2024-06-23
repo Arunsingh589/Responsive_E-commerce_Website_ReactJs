@@ -6,3 +6,24 @@
 body::-webkit-scrollbar{
     display: none;
 }
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f4f6; /* Assuming you want a gray background */
+}
+
+.loader-container p {
+  font-size: 2rem; /* Increase font size */
+  color: #86BC42; /* Set text color */
+  margin-bottom: 1rem; /* Add some space between the text and the loader */
+}
+
+@media (max-width: 600px) {
+  .loader-container .loader {
+    transform: scale(0.7);
+  }
+}

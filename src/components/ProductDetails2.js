@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import items from './Data';
+import { useParams } from 'react-router-dom'
+import items from './Data2';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Product from './Product';
@@ -91,14 +91,6 @@ const ProductDetails = ({ cart, setCart, likedItems, setLikedItems }) => {
   return (
     <>
       <div className=' pt-10 container flex flex-col gap-8'>
-        <div className="flex-end items-center mb-8">
-          <Link
-            to={'/'}
-            className="text-blue-500 font-semibold"
-          >
-            Back to Shopping   &#8594;
-          </Link>
-        </div>
         <div className='mb-8  items-center justify-center mx-auto w-[270px] h-[270px]'>
 
           <img src={item.imgSrc} className=' mx-auto' alt="" />
@@ -150,7 +142,7 @@ const ProductDetails = ({ cart, setCart, likedItems, setLikedItems }) => {
       <h1 className='text-center mt-3 mb-[-55px] text-[50px] font-semibold justify-center'>Related Products</h1>
       <div className='flex justify-center items-center mt-6 '>
         <div className='flex flex-wrap justify-center  gap-4'>
-          <Product cart={cart} setCart={setCart} items={relatedItem} likedItems={likedItems} setLikedItems={setLikedItems} />
+          {/* <Product cart={cart} setCart={setCart} items={relatedItem} likedItems={likedItems} setLikedItems={setLikedItems} /> */}
           <Discount cart={cart} setCart={setCart} items={relatedItem} likedItems={likedItems} setLikedItems={setLikedItems} />
         </div>
       </div>

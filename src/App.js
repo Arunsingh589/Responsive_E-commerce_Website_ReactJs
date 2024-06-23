@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import items from './components/Data'
 import Hero from "./components/Hero";
 import Product from "./components/Product";
@@ -14,12 +14,22 @@ import items2 from "./components/Data2";
 import NewsLetter from "./components/NewsLetter";
 import Footer from "./components/Footer";
 import Like from "./components/Like";
+import { HashLoader } from "react-spinners";
 function App() {
   const [cart, setCart] = useState([]);
   const [data, setData] = useState([...items]);
   const [discount, setDiscount] = useState([...items2])
   const [showHero, setShowHero] = useState(true);
   const [likedItems, setLikedItems] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+   setLoading(true)
+   setTimeout(() => {
+    setLoading(false)
+   },3000)
+  }, [])
 
 
 
@@ -50,7 +60,21 @@ function App() {
   return (
     <>
       <Router >
-        <Navbar size={cart.length} like={likedItems.length} setData={setData} setShowHero={setShowHero} />
+      {
+          loading ? 
+          <div className='loader-container bg-gray-100'>
+            <p>E-Commerce Website</p>
+          <HashLoader className='loader'
+        color={'#86BC42'}
+        loading={loading}
+        // cssOverride={override}
+        size={70}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> 
+      </div>
+      : <>
+      <Navbar size={cart.length} like={likedItems.length} setData={setData} setShowHero={setShowHero} />
         <Routes >
           {/* Route with Hero component */}
           <Route
@@ -79,6 +103,9 @@ function App() {
           <Route path="/like" element={<Like likedItems={likedItems} removeFromLikes={removeFromLikes} cart={cart} setCart={setCart} />} />
 
         </Routes>
+      </>
+       }
+        
       </Router>
 
     </>
