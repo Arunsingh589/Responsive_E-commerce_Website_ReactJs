@@ -272,8 +272,10 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                         <li onClick={() => filterByCategory('mb protines')} className='p-5'>MB Protines</li>
                         <li onClick={() => filterByCategory('hf protines')} className='p-5 '>HF Protines</li>
                         <li onClick={() => filterByCategory('gnc protines')} className='p-5'>GNC Protines</li>
-                        <li onClick={() => setShowContactDetails(!showContactDetails)} className='p-5'>Contact</li>
-                        {showContactDetails && (
+                        <Link to={'/contact'} className='p-5'>Contact</Link>
+
+                        {/* <li onClick={() => setShowContactDetails(!showContactDetails)} className='p-5'>Contact</li> */}
+                        {/* {showContactDetails && (
                             <div className="px-5">
                                 <div className="border border-gray-300 p-4 mb-4">
                                     <p className="text-blue-500">Mobile: <span className="text-yellow-500">9773674997</span></p>
@@ -283,7 +285,7 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                                     <p className="text-yellow-500">If any problem come in a product that you purchased from our site, it can be replaced within 15 days. After 15 days, no products will be replaced or refunded.</p>
                                 </div>
                             </div>
-                        )}
+                        )} */}
                         <div >
 
 
@@ -305,31 +307,31 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                     <Link to={'/'}>E-Cart</Link>
 
                     <div className=' flex justify-between items-center gap-3'>
-                    <Link to={'/cart'} className=' relative flex gap-3 items-center'>
-                        <div className='relative cursor-pointer' onClick={handleUserCircleClick}>
-                            <LuUserCircle2 className='' />
-                            {selectedImage && (
-                                <img
-                                    src={URL.createObjectURL(selectedImage)}
-                                    alt="Selected"
-                                    className="absolute top-0 left-0 w-full h-full rounded-full border border-yellow-400  hover:scale-125"
-                                />
-                            )}
-                        </div>
-                        <FiShoppingCart />
-                        <div className=' w-[20px] h-[20px] bg-red-500 rounded-full absolute
+                        <Link to={'/cart'} className=' relative flex gap-3 items-center'>
+                            <div className='relative cursor-pointer' onClick={handleUserCircleClick}>
+                                <LuUserCircle2 className='' />
+                                {selectedImage && (
+                                    <img
+                                        src={URL.createObjectURL(selectedImage)}
+                                        alt="Selected"
+                                        className="absolute top-0 left-0 w-full h-full rounded-full border border-yellow-400  hover:scale-125"
+                                    />
+                                )}
+                            </div>
+                            <FiShoppingCart />
+                            <div className=' w-[20px] h-[20px] bg-red-500 rounded-full absolute
                  text-[12px] text-white place-items-center grid top-[15px] right-[-10px] '>{size}</div>
 
 
 
-                    </Link>
-                    <Link to={'/like'} className=' relative cursor-pointer'>
+                        </Link>
+                        <Link to={'/like'} className=' relative cursor-pointer'>
 
-                        <FaRegHeart/>
-                        <div className=' w-[20px] h-[20px] bg-red-500 rounded-full font-semibold absolute
+                            <FaRegHeart />
+                            <div className=' w-[20px] h-[20px] bg-red-500 rounded-full font-semibold absolute
                                     text-[12px] text-white place-items-center grid top-[15px] right-[-10px] '>{like}</div>
 
-                    </Link>
+                        </Link>
                     </div>
 
                 </div>

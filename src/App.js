@@ -15,6 +15,7 @@ import NewsLetter from "./components/NewsLetter";
 import Footer from "./components/Footer";
 import Like from "./components/Like";
 import { HashLoader } from "react-spinners";
+import ContactSection from "./components/Contact";
 function App() {
   const [cart, setCart] = useState([]);
   const [data, setData] = useState([...items]);
@@ -25,17 +26,11 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-   setLoading(true)
-   setTimeout(() => {
-    setLoading(false)
-   },3000)
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
   }, [])
-
-
-
-
-
-
 
 
   const updateQuantity = (id, value = 1) => {
@@ -60,52 +55,54 @@ function App() {
   return (
     <>
       <Router >
-      {
-          loading ? 
-          <div className='loader-container bg-gray-100'>
-            <p>E-Commerce Website</p>
-          <HashLoader className='loader'
-        color={'#86BC42'}
-        loading={loading}
-        // cssOverride={override}
-        size={70}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      /> 
-      </div>
-      : <>
-      <Navbar size={cart.length} like={likedItems.length} setData={setData} setShowHero={setShowHero} />
-        <Routes >
-          {/* Route with Hero component */}
-          <Route
-            path="/"
-            element={
-              <>
-                {showHero &&
-                  <>
-                    <Hero />
-                    <Service />
-                  </>
-                }
-                <Product cart={cart} setCart={setCart} items={data} likedItems={likedItems} setLikedItems={setLikedItems} />
-                {showHero && <Discount cart={cart} setCart={setCart} items={discount} likedItems={likedItems} setLikedItems={setLikedItems} />}
-                {showHero && <NewsLetter />}
-                {showHero && <Footer />}
+        {
+          loading ?
+            <div className='loader-container bg-gray-100'>
+              <p>E-Commerce Website</p>
+              <HashLoader className='loader'
+                color={'#86BC42'}
+                loading={loading}
+                // cssOverride={override}
+                size={70}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+            : <>
+              <Navbar size={cart.length} like={likedItems.length} setData={setData} setShowHero={setShowHero} />
+              <Routes >
+                {/* Route with Hero component */}
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      {showHero &&
+                        <>
+                          <Hero />
+                          <Service />
+                        </>
+                      }
+                      <Product cart={cart} setCart={setCart} items={data} likedItems={likedItems} setLikedItems={setLikedItems} />
+                      {showHero && <Discount cart={cart} setCart={setCart} items={discount} likedItems={likedItems} setLikedItems={setLikedItems} />}
+                      {showHero && <NewsLetter />}
+                      {showHero && <Footer />}
 
-              </>
-            }
-          />
-          {/* Other routes */}
-          <Route path="/item/:id" element={<ProductDetails cart={cart} setCart={setCart} likedItems={likedItems} setLikedItems={setLikedItems} />} />
-          <Route path="/search/:term" element={<SearchTerm cart={cart} setCart={setCart} likedItems={likedItems} setLikedItems={setLikedItems} />} />
-          <Route path="/cart" element={<Cart cart={cart} setCart={setCart} updateQuantity={updateQuantity} />} />
-          <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart} />} />
-          <Route path="/like" element={<Like likedItems={likedItems} removeFromLikes={removeFromLikes} cart={cart} setCart={setCart} />} />
+                    </>
+                  }
+                />
+                {/* Other routes */}
+                <Route path="/item/:id" element={<ProductDetails cart={cart} setCart={setCart} likedItems={likedItems} setLikedItems={setLikedItems} />} />
+                <Route path="/search/:term" element={<SearchTerm cart={cart} setCart={setCart} likedItems={likedItems} setLikedItems={setLikedItems} />} />
+                <Route path="/cart" element={<Cart cart={cart} setCart={setCart} updateQuantity={updateQuantity} />} />
+                <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart} />} />
+                <Route path="/like" element={<Like likedItems={likedItems} removeFromLikes={removeFromLikes} cart={cart} setCart={setCart} />} />
+                <Route path="/contact" element={<ContactSection />} />
 
-        </Routes>
-      </>
-       }
-        
+
+              </Routes>
+            </>
+        }
+
       </Router>
 
     </>

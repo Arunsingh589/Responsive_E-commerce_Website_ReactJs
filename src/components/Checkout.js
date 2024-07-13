@@ -79,7 +79,7 @@ const Checkout = ({ cart, setCart }) => {
         setDeliveryProgress(2); // Order delivered
       }, 300000 + Math.random() * 300000); // 5 to 10 minutes
     }, 2000); // Short delay for initial processing and dispatch
-  
+
   };
 
   const location = useLocation();
@@ -110,9 +110,7 @@ const Checkout = ({ cart, setCart }) => {
               <div className="font-semibold">Total: Rs-{price}</div>
             </div>
             {paymentStatus === 'pending' && (
-              <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handlePayment}>
-                Proceed to Payment
-              </button>
+              <button onClick={handlePayment} className="btn-24"><span>Proceed to Payment</span></button>
             )}
             {showPaymentForm && (
               <div className="mt-4">
