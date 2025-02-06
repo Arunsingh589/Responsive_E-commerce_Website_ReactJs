@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { LuMailOpen } from "react-icons/lu"
+
 const NewsLetter = () => {
     const [email, setEmail] = useState('');
     const [showToast, setShowToast] = useState(false);
@@ -32,10 +33,10 @@ const NewsLetter = () => {
 
         setTimeout(() => {
             setShowToast(false);
-        }, 3000); // Hide the toast after 3 seconds
+        }, 3000);
     };
-    
-    
+
+
     return (
         <div className=" bg-primaryDark mt-4">
             <div className=" container py-8 flex flex-col md:flex-row justify-between
@@ -51,7 +52,7 @@ const NewsLetter = () => {
                 </div>
 
                 <div className="w-full max-w-[500px] relative">
-               
+
                     <input
                         className="py-4 px-6 w-full rounded-full text-black"
                         type="text"
@@ -59,17 +60,17 @@ const NewsLetter = () => {
                         placeholder="Your Email Address..."
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                   
-                 
+
+
 
                     <button className=" bg-primaryDark absolute top-[50%]
                  right-2 translate-y-[-50%] py-2 px-4
                   rounded-full hover:bg-accent"
-                    onClick={ subscribe}
-                  >
+                        onClick={subscribe}
+                    >
                         Subscribe
                     </button>
-                    
+
                 </div>
             </div>
             {showToast && (
@@ -77,10 +78,10 @@ const NewsLetter = () => {
                     Your subscription has been added!
                 </div>
             )}
-              {errorMessage && (
-                        <p className="text-red-500 relative left-[5%] text-[10px] sm:text-[10px] sm:left-[50%]  xl:text-[15px] md:left-[57%] lg:left-[52%] xl:left-[67%] bottom-7" >{errorMessage}</p>
-                    )}
-             
+            {errorMessage && (
+                <p className="text-red-500 relative left-[5%] text-[10px] sm:text-[10px] sm:left-[50%]  xl:text-[15px] md:left-[57%] lg:left-[52%] xl:left-[67%] bottom-7" >{errorMessage}</p>
+            )}
+
         </div>
     )
 }

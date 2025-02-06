@@ -1,11 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { FiShoppingCart } from 'react-icons/fi'
-import { HiMenuAlt1 } from 'react-icons/hi'
 import { LuUserCircle2 } from 'react-icons/lu'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import items from './Data'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
-import { CiHeart } from 'react-icons/ci'
 import { FaRegHeart } from "react-icons/fa";
 
 const Navbar = ({ size, setData, setShowHero, like }) => {
@@ -13,10 +11,7 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [showContactDetails, setShowContactDetails] = useState(false);
     const [toggle, setToggle] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [products, setProducts] = useState(items);
     const [userLoginVisible, setUserLoginVisible] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,8 +20,6 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
     const [passwordError, setPasswordError] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const fileInputRef = useRef(null);
-
-
 
 
     const filterByCategory = (category) => {
@@ -38,7 +31,6 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
     };
 
     const handleUserCircleClick = () => {
-
         setUserLoginVisible(true);
         if (fileInputRef.current) {
             fileInputRef.current.click();
@@ -51,7 +43,6 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
 
 
     const handleLoginSubmit = () => {
-
         if (email.trim() === '') {
             setEmailError('Email is required');
             setTimeout(() => {
@@ -83,8 +74,6 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
 
         // if (!emailError && !passwordError) {
         console.log("Email:", email, "Password:", password);
-
-
         setEmail('');
         setPassword('');
         setUserLoginVisible(false);
@@ -92,30 +81,21 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
         setEmailError('');
         setPasswordError('');
 
-
         setTimeout(() => {
             setSignupSuccess(false);
         }, 2000);
     };
 
 
-
-
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         navigate(`/search/${searchTerm}`)
         setSearchTerm("")
-
-
     }
 
     return (
-        <nav className=' sticky top-0 left-0 z-10  border-primaryDark dark:bg-primaryDark m-0 p-0'>
+        <nav className='sticky top-0 left-0 z-10  border-primaryDark dark:bg-primaryDark m-0 p-0'>
             <div className=' bg-white  md:bg-primaryDark'>
-
 
                 {/* User Login Section */}
                 {userLoginVisible && (
@@ -135,6 +115,8 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                                     </div>
                                 )}
                                 {/* Hidden file input element */}
+                                {/* The input is hidden and activated only when the icon is clicked.
+                                  fileInputRef is used to reference and trigger the input programmatically. */}
                                 <input
                                     type="file"
                                     ref={fileInputRef}
@@ -148,6 +130,7 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                                         <div className="relative cursor-pointer">
                                             <LuUserCircle2 className=' w-[48px] h-[48px]' />
                                             <img
+                                                // Uses URL.createObjectURL to generate a preview URL from the uploaded image.
                                                 src={URL.createObjectURL(selectedImage)}
                                                 alt="Selected"
                                                 className="absolute top-0 left-0 w-full h-full rounded-full "
@@ -155,12 +138,10 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                                         </div>
                                     </div>
                                 )}
-
-
                                 {selectedImage && (
                                     <div className="flex justify-between gap-2">
                                         <button
-                                            onClick={() => setSelectedImage(null)} // Clear selected image
+                                            onClick={() => setSelectedImage(null)}
                                             className="w-1/2 py-2 bg-gray-200 text-gray-600 rounded-lg shadow-md hover:shadow-lg transition duration-300"
                                         >
                                             Remove Image
@@ -174,9 +155,8 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                                     </div>
 
                                 )}
+
                                 {/* Render email and password fields */}
-
-
                                 <input
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -222,12 +202,12 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                 <div className=' container py-3 items-center hidden justify-between md:flex'>
                     <div className=' flex items-center gap-8'>
                         <Link to={'/'} className='md:text-white text-[40px] cursor-pointer'>E-Cart</Link>
-                        <form onSubmit={handleSubmit} className=' relative'>
+                        <form onSubmit={handleSubmit} className='relative'>
                             <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" placeholder='Search trem....' className='px-4 py-3 rounded-lg w-[300px]' />
                         </form>
                     </div>
-                    <div className='flex text-white text-[26px] gap-6'>
 
+                    <div className='flex text-white text-[26px] gap-6'>
                         <div className='relative cursor-pointer' onClick={handleUserCircleClick}>
                             <LuUserCircle2 className='' />
                             {selectedImage && (
@@ -256,23 +236,22 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
 
                             </Link>
                         </div>
-
-
-
-
                     </div>
                 </div>
+
+
                 {/* Visible in mobile */}
                 <div className=' container flex justify-between items-center text-[22px] py-4 md:hidden'>
-                    <ul className={`duration-300 md:hidden w-full h-screen text-white py-16  overflow-y-scroll   fixed bg-black top-[65px]
+                    <ul className={`duration-300 md:hidden w-full h-screen text-white py-16  overflow-y-scroll fixed bg-black top-[65px]
                    ${toggle ? 'left-[0]' : 'left-[-100%]'}
                    `}>
 
                         <li onClick={() => setData(items, setShowHero(true))} className='p-5 '>All Products</li>
                         <li onClick={() => filterByCategory('mb protines')} className='p-5'>MB Protines</li>
                         <li onClick={() => filterByCategory('hf protines')} className='p-5 '>HF Protines</li>
-                        <li onClick={() => filterByCategory('gnc protines')} className='p-5'>GNC Protines</li>
-                        <Link to={'/contact'} className='p-5'>Contact</Link>
+                        <li onClick={() => filterByCategory('mobiles')} className='p-5 '>Mobiles</li>
+                        <li onClick={() => filterByCategory('laptops')} className='p-5 '>Laptops</li>
+                        <li onClick={() => filterByCategory('Earbuds')} className='p-5'>Earbuds</li>
 
                         {/* <li onClick={() => setShowContactDetails(!showContactDetails)} className='p-5'>Contact</li> */}
                         {/* {showContactDetails && (
@@ -287,9 +266,6 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
                             </div>
                         )} */}
                         <div >
-
-
-
                         </div>
 
 
@@ -339,18 +315,14 @@ const Navbar = ({ size, setData, setShowHero, like }) => {
             {
                 location.pathname === '/' && (
                     <div className='bg-primary hidden md:block cursor-pointer '>
-                        <ul className='container flex justify-between py-4 uppercase text-white '>
-
+                        <ul className='container flex justify-between py-4 uppercase text-white'>
                             <li onClick={() => setData(items, setShowHero(true))}>All Products</li>
                             <li onClick={() => filterByCategory('mb protines')}  >MB Protine</li>
                             <li onClick={() => filterByCategory('hf protines')} >HF Protine</li>
                             <li onClick={() => filterByCategory('tablets')} >Tablets</li>
                             <li onClick={() => filterByCategory('mobiles')} >Mobiles</li>
                             <li onClick={() => filterByCategory('laptops')}>Laptops</li>
-                            <li onClick={() => filterByCategory('gnc protines')} >GNC Protine</li>
-
-
-
+                            <li onClick={() => filterByCategory('Earbuds')} >Earbuds</li>
                         </ul>
 
                     </div>

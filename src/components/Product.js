@@ -91,8 +91,8 @@ const Product = ({ cart, setCart, items, likedItems, setLikedItems }) => {
       </div>
 
       <div className='pt-20'>
-        <div className=' container'>
-          {(itemCount >= 6) && (
+        <div className='container'>
+          {(itemCount >= 8) && (
             <div className=' sm:flex justify-between items-center'>
               <div className=' text-xl md:text-4xl pb-4 md:pb-0'>Feature Products</div>
               <div className='flex text-[14px] gap-8 md:text-lg items-center'>
@@ -111,7 +111,7 @@ const Product = ({ cart, setCart, items, likedItems, setLikedItems }) => {
 
                   <div key={item.id}>
                     <div className='border border-gray-300 p-4 cursor-pointer relative  group hover:shadow-2xl w-full h-full'>
-                      <Link to={`/item/${item.id}`} >
+                      <Link to={`/item/${item.id}`}>
                         <img src={item.imgSrc} alt="" />
 
                       </Link>
@@ -139,7 +139,7 @@ const Product = ({ cart, setCart, items, likedItems, setLikedItems }) => {
                       {/* Only show in Hover */}
 
 
-                      <div className=' w-full h-full opacity-0 top-0 left-0 transition-opacity
+                      <div className='w-full h-full opacity-0 top-0 left-0 transition-opacity
           group-hover:opacity-100'>
                         <div className='flex gap-2 items-center absolute left-[24%] md:left-[16%] md:top-[51%] top-[50%] translate-x-[50%]
             '>

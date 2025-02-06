@@ -5,7 +5,7 @@ import Product from './Product';
 
 const SearchTerm = ({ cart, setCart, likedItems, setLikedItems }) => {
     const { term } = useParams();
-    const [filterData, setFilterData] = useState([])
+    const [filterData, setFilterData] = useState([]);
 
     useEffect(() => {
         const filteredData = () => {
@@ -14,7 +14,7 @@ const SearchTerm = ({ cart, setCart, likedItems, setLikedItems }) => {
             setFilterData(data)
         }
         filteredData();
-    }, [term])
+    }, [term]);
     return (
         <div>
             <div className="flex m-4 items-center mb-2">

@@ -4,8 +4,6 @@ import items from './Data';
 import Checkout from './Checkout';
 
 
-
-
 const Cart = ({ cart, setCart, updateQuantity }) => {
     const [price, setPrice] = useState(0);
     const [showCheckout, setShowCheckout] = useState(false);
@@ -14,11 +12,8 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
         let totalPrice = 0;
         cart.forEach((item) => (
             totalPrice += Number(item.price) * item.amount
-
-
         ));
         setPrice(totalPrice);
-
     }
 
     useEffect(() => {
@@ -52,9 +47,6 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
                         Continue Shopping
                     </Link>
                 </div>
-
-
-
             ) : (
                 <section>
                     <div className="flex justify-between items-center mb-8">
@@ -66,7 +58,6 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
                             Back to Shopping   &#8594;
                         </Link>
                     </div>
-
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -87,7 +78,6 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
 
 
                                                 <div className="flex items-center space-x-2  ">
-
                                                     <button
                                                         onClick={() => updateQuantity(item.id, -1)}
                                                         className="bg-gray-200 text-gray-600 py-2 px-3 rounded-full"
@@ -101,11 +91,7 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
                                                     >
                                                         +
                                                     </button>
-
-
                                                 </div>
-
-
                                             </div>
                                         </div>
                                         <button
@@ -114,12 +100,8 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
                                         >
                                             Remove
                                         </button>
-
-
                                     </div>
-
                                 </div>
-
                             ))
                         }
                     </div>
@@ -136,6 +118,8 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
                                 <span className="text">Clear Cart</span>
                             </span>
                         </button>
+
+
                         {/* Link to checkout page */}
                         <Link to={'/checkout'} className="btnwallet">
                             <button className="button"
@@ -172,21 +156,11 @@ const Cart = ({ cart, setCart, updateQuantity }) => {
                             </button>
                         </Link>
 
-
-
                         <Checkout cart={cart} price={price} setCart={setCart} />
-
-
                     </div>
-
-
-
-
                 </section>
             )
             }
-
-
         </div>
     )
 }
