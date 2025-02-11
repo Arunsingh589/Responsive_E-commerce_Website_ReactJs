@@ -15,6 +15,8 @@ import NewsLetter from "./components/NewsLetter";
 import Footer from "./components/Footer";
 import Like from "./components/Like";
 import { HashLoader } from "react-spinners";
+import Login from "./components/Routes/Login";
+import ProtectedRoute from "./components/Routes/ProtectedRoute";
 
 function App() {
   const [cart, setCart] = useState(() => {
@@ -29,6 +31,7 @@ function App() {
   const [discount, setDiscount] = useState([...items2]);
   const [showHero, setShowHero] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isUserLoginVisible, setUserLoginVisible] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -86,9 +89,28 @@ function App() {
             } />
             <Route path="/item/:id" element={<ProductDetails cart={cart} setCart={setCart} likedItems={likedItems} setLikedItems={setLikedItems} />} />
             <Route path="/search/:term" element={<SearchTerm cart={cart} setCart={setCart} likedItems={likedItems} setLikedItems={setLikedItems} />} />
-            <Route path="/cart" element={<Cart cart={cart} setCart={setCart} updateQuantity={updateQuantity} />} />
-            <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart} />} />
-            <Route path="/like" element={<Like likedItems={likedItems} removeFromLikes={removeFromLikes} cart={cart} setCart={setCart} />} />
+            {/* <Route path="/cart" element={<Cart cart={cart} setCart={setCart} updateQuantity={updateQuantity} />} /> */}
+            <Route path="/cart" element={
+              <ProtectedRoute>
+                <Cart cart={cart} setCart={setCart} updateQuantity={updateQuantity} />
+              </ProtectedRoute>
+            } />
+
+
+            {/* <Route path="/checkout" element={<Checkout cart={cart} setCart={setCart} />} /> */}
+            <Route path="/checkout" element={
+              <ProtectedRoute>
+                <Checkout cart={cart} setCart={setCart} />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/login" element={<Login setUserLoginVisible={setUserLoginVisible} />} />
+            <Route path="/like" element={
+              <ProtectedRoute>
+                <Like likedItems={likedItems} removeFromLikes={removeFromLikes} cart={cart} setCart={setCart} />
+              </ProtectedRoute>
+            } />
+            {/* <Route path="/like" element={<Like likedItems={likedItems} removeFromLikes={removeFromLikes} cart={cart} setCart={setCart} />} /> */}
           </Routes>
         </>
       )}
